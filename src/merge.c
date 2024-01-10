@@ -24,12 +24,10 @@ void merge(int input_FileDesc, int chunkSize, int bWay, int output_FileDesc) {
             if(CHUNK_GetNext(&iterator, &chunk)== -1) {
                 // printf("no more chunks\n");
                 bWay = bWay - (bWay-i);
-                // break;
             }
             Record_Iterator[i] = CHUNK_CreateRecordIterator(&chunk);
             if(CHUNK_GetNextRecord(&Record_Iterator[i], &records[i]) == -1){
                 // printf("no more records in this chunk\n");
-                // break;
             }
         }
 
@@ -46,18 +44,15 @@ void merge(int input_FileDesc, int chunkSize, int bWay, int output_FileDesc) {
         }
 
         // Compare all records in each chunk and insert them in a sorted order in outputfile
-        while(true){
-            if(bWay<=0){
-                break;
-            }
+        while(bWay > 0){
 
             // Insert the min_record from the b records in records[] array
             HP_InsertEntry(output_FileDesc, min_record);
 
             // Move iterator to the next records from the one moved(min_record) and change the previous one in records[] array
             if(CHUNK_GetNextRecord(&Record_Iterator[min_record_pos], &records[min_record_pos]) == -1){
-                // resize record iterator array and move its values accordingly
-                //If is the last chunk
+                // Move values accordingly
+                // If its the last chunk and if its not
                 if(min_record_pos == bWay-1){
                     bWay --;
                     min_record_pos = 0;
@@ -69,7 +64,6 @@ void merge(int input_FileDesc, int chunkSize, int bWay, int output_FileDesc) {
                     bWay --;
                     min_record_pos = bWay-1;       
                 }
-                
             }
 
             // Initialize min_record
@@ -82,8 +76,6 @@ void merge(int input_FileDesc, int chunkSize, int bWay, int output_FileDesc) {
                     min_record_pos = i;
                 }
             }
-
         }
     }
-
 }

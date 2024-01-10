@@ -94,9 +94,6 @@ int CHUNK_UpdateIthRecord(CHUNK* chunk,  int i, Record record){
             currentRecord++;
         }
     }
-
-    // If i is out of bounds for the chunk
-    // return 0;
 }
 
 
@@ -109,8 +106,7 @@ void CHUNK_Print(CHUNK chunk) {
         for (int j = 0; j < blockRecordCount; ++j) {
             if (HP_GetRecord(chunk.file_desc, blockId, j, &record) != -1) {
                 // Print the retrieved record
-                printf(/*"Record %d:*/ "ID: %d, Name: %s, Surname: %s, City: %s\n",
-                       /*blockId * blockRecordCount + j,*/ record.id, record.name, record.surname, record.city);
+                printf("ID: %d, Name: %s, Surname: %s, City: %s\n", record.id, record.name, record.surname, record.city);
             }
             if (HP_Unpin(chunk.file_desc, blockId) != 0) {
                     printf("Unpin error 3\n");
@@ -164,16 +160,12 @@ int CHUNK_GetNextRecord(CHUNK_RecordIterator *iterator,Record* record){
 
 
 
-//########################################## WATCH HERE #############################################
-// check <= , < ,++i, i++
 int countRecordsInChunk(CHUNK* chunk) {
     int totalRecords = 0;
     Record record;
     for (int i = chunk->from_BlockId; i <= chunk->to_BlockId; ++i) {
         for (int j = 0; j < HP_GetRecordCounter(chunk->file_desc, i); ++j) {
-            // if (CHUNK_GetIthRecordInChunk(chunk, j, &record) == 0) { // this if may be unnecessary
                 totalRecords++;
-            // }
         }
     }
     return totalRecords;

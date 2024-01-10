@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/kajackae/Projects/IDS-Project3/src",
-      "program": "/home/kajackae/Projects/IDS-Project3/src/build/Debug/outDebug",
+      "cwd": "/home/kajackae/Projects/IDS-Project3/examples",
+      "program": "/home/kajackae/Projects/IDS-Project3/examples/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "merge.h"
 
-// #define RECORDS_NUM 200 // you can change it if you want
+#define RECORDS_NUM 10000 // you can change it if you want
 #define FILE_NAME "data.db"
 #define OUT_NAME "out"
 
@@ -62,7 +62,7 @@ int main() {
   int chunkSize = 5;
   int bWay= 4;
   int fileIterator;
-  //
+  
   BF_Init(LRU);
   int file_desc = createAndPopulateHeapFile(FILE_NAME);
   sortPhase(file_desc,chunkSize);
@@ -86,7 +86,7 @@ int createAndPopulateHeapFile(char* filename){
 }
 
 void printAllRecordss(int file_desc) {
-    CHUNK_Iterator iterator = CHUNK_CreateIterator(file_desc, 5); // Using 1 block per chunk
+    CHUNK_Iterator iterator = CHUNK_CreateIterator(file_desc, 5);
     CHUNK chunk;
 
     while (CHUNK_GetNext(&iterator, &chunk) == 0) {
@@ -99,7 +99,6 @@ void sortPhase(int file_desc,int chunkSize){
   sort_FileInChunks( file_desc, chunkSize);
 }
 
-///////// to watch ///////////
 /* Performs the merge phase of the external merge sort algorithm  using chunks of size 'chunkSize' and 'bWay' merging. The merge phase may be performed in more than one cycles.*/
 void mergePhases(int inputFileDesc,int chunkSize,int bWay, int* fileCounter){
   int oututFileDesc;

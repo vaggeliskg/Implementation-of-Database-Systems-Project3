@@ -7,7 +7,7 @@
 #include "sort.h"
 #include "merge.h"
 #include "chunk.h"
-// Returns, when rec1s<rec2[return<0], rec1=rec2[return = 0], rec1>rec2[return > 0]
+
 bool shouldSwap(Record* rec1,Record* rec2){
     
     // Sort based on name and surname
@@ -37,7 +37,7 @@ void sort_FileInChunks(int file_desc, int numBlocksInChunk){
 void sort_Chunk(CHUNK* chunk){
     Record record_i, record_j;
 
-    // Sort the chunk using a simple sorting algorithm (e.g., selection sort)
+    // Sort the chunk using a simple sorting algorithm 
     for (int i = 0; i < chunk->recordsInChunk; ++i) {
         CHUNK_GetIthRecordInChunk(chunk, i, &record_i);
 
