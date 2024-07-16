@@ -3,7 +3,7 @@
 #include <string.h>
 #include "merge.h"
 
-#define RECORDS_NUM 10000 // you can change it if you want
+#define RECORDS_NUM 10000 // you can change it if you want!
 #define FILE_NAME "data.db"
 #define OUT_NAME "out"
 
